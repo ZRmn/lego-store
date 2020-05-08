@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 })
                     .and()
                 .authorizeRequests()
-                .antMatchers("/sign-out/**").authenticated()
+                .antMatchers("/sign-out").authenticated()
                 .antMatchers("/sign-in", "/sign-up").anonymous()
                 .antMatchers("/cart/**", "/orders/**").hasAuthority("CUSTOMER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")

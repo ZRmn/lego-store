@@ -36,6 +36,8 @@ function signIn()
 
     let signInForm = {login, password};
 
+    addHeader(headers);
+
     let requestConfig = {
         "method": "POST",
         "url":  host + "/sign-in",
@@ -50,26 +52,26 @@ function signIn()
             saveAuthToken(json.value);
             window.location.replace("/");
         }, reason => {
-            alert("error");
+            document.getElementById("lox").innerText = ""
         });
 }
 
 function signOut()
 {
-    // let requestConfig = {
-    //     "method": "POST",
-    //     "url":  host + "/sign-out",
-    //     "headers": headers
-    // };
-    // let ajax = new Ajax(requestConfig);
-    //
-    // ajax.makeRequest()
-    //     .then(value => {
-    //         deleteAuthToken();
-    //         window.location.replace("/");
-    //     }, reason => {
-    //         alert("error");
-    //     });
+    let requestConfig = {
+        "method": "POST",
+        "url":  host + "/sign-out",
+        "headers": headers
+    };
+    let ajax = new Ajax(requestConfig);
+
+    ajax.makeRequest()
+        .then(value => {
+            deleteAuthToken();
+            window.location.replace("/");
+        }, reason => {
+            alert("error");
+        });
 }
 
 function getProducts()

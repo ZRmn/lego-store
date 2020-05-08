@@ -13,6 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="../css/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="../css/responsive.css">
 
+    <script src="../js/ajax.js" rel="script" type="text/javascript"></script>
+    <script src="../js/auth.js" rel="script" type="text/javascript"></script>
+    <script src="../js/requests.js" rel="script" type="text/javascript"></script>
+
 	<title>SignIn</title>
 	<h1></h1>
 
@@ -28,22 +32,18 @@
 		<div class="container-fluid bg">
 			<div class="row justify-content-center">
 				<div class="col-sm-6 col-md-12 col-lg-3">
-					<form class="form-container">
+					<form class="form-container" name="signInForm">
 						<div class="form-group">
-							<label for="inputEmail">Email</label>
-							<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="example@mail.com">
-							<small id="emailHelp" class="form-text text-muted">Мы не передаем вашу электронную почту кому-либо.</small>
+							<label for="inputEmail">Логин</label>
+							<input class="form-control" name="login" id="inputEmail" aria-describedby="emailHelp">
 						</div>
 						<div class="form-group">
 							<label for="inputPassword">Пароль</label>
-							<input type="password" class="form-control" id="inputPassword" placeholder="********">
+							<input type="password" name="password" class="form-control" id="inputPassword" placeholder="********">
 						</div>
-						<button type="submit" class="btn btn-primary btn-block">Вход</button>
+						<button type="submit" onclick="signIn(); return false;" class="btn btn-primary btn-block">Вход</button>
 
 						<br>
-						<div class="text-center">
-							<p><a href="#" >Не можете войти?</a></p>
-						</div>
 
 						<h2 class="devide">
 							<span>Или используйте социальные сети</span>
@@ -54,7 +54,7 @@
 								<a href="#"><i class="fab fa-facebook"></i></a>
 								<a href="#"><i class="fab fa-instagram"></i></a>
 							</div>
-							<p><a href="#" >Еще нет аккаунта?</a></p>
+							<p><a href="/sign-up" >Еще нет аккаунта?</a></p>
 						</div>
 					</form>
 				</div>
