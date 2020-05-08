@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sublime project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap4/bootstrap.min.css">
+    <link href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="../css/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+
+
+    <!-- jQuery slider -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../css/main_styles.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+
+</head>
+<body>
+
+    <div class="super_container">
+
+        {{>header}}
+
+<!-- Products -->
+
+<div class="products">
+    <div class="container">
+
+        <div class="row">
+            <div class="sort_dropdown">
+                <form action="#">
+                    <div class="select-box">
+                        <select id="select-box1" class="select">
+                            <option value="Choice 2">Сначала новые</option>
+                            <option value="Choice 3">Сначала старые</option>
+                            <option value="Choice 2">Сначала дорогие</option>
+                            <option value="Choice 3">Сначала дешевые</option>
+                            <option value="Choice 2">Сначала дешевые по деталям</option>
+                            <option value="Choice 3">Сначала дорогие по деталям</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <h1 class="filtr_title">Цена</h1>
+                <form action="#">
+                  <div class="slider">
+                    <p>
+                      <input type="text" id="price_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                  </p>
+
+                  <div id="slider-range-price">
+
+                  </div>
+              </div>
+          </form>
+
+
+          <h1 class="filtr_title">Количество деталей</h1>
+          <form action="#">
+              <div class="slider">
+                <p>
+                  <input type="text" id="pieces_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+              </p>
+
+              <div id="slider-range-pieces">
+
+              </div>
+          </div>
+      </form>
+
+
+      <h1 class="filtr_title">Год</h1>
+      <form action="#">
+          <div class="slider">
+            <p>
+              <input type="text" id="year_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+          </p>
+
+          <div id="slider-range-year">
+
+          </div>
+      </div>
+  </form>
+</div>
+
+<div class="col">
+
+    <div class="product_grid">
+
+        <!-- Product -->
+        <a href="#">
+            <div class="product">
+                <div class="product_image">
+                    <img src="../images/products/star_destroyer.jpg" alt="">
+                </div>
+                <div class="product_content">
+                    <div class="product_title text-center">
+                        <h1 class="text-center lego-name">Title</h1>
+                        <h6 class="text-center price">1111 руб</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Product -->
+        <a href="#">
+            <div class="product">
+                <div class="product_image">
+                    <img src="../images/products/star_destroyer.jpg" alt="">
+                </div>
+                <div class="product_content">
+                    <div class="product_title text-center">
+                        <h1 class="text-center lego-name">Title</h1>
+                        <h6 class="text-center price">1111 руб</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Product -->
+        <a href="#">
+            <div class="product">
+                <div class="product_image">
+                    <img src="../images/products/star_destroyer.jpg" alt="">
+                </div>
+                <div class="product_content">
+                    <div class="product_title text-center">
+                        <h1 class="text-center lego-name">Title</h1>
+                        <h6 class="text-center price">1111 руб</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Product -->
+        <a href="#">
+            <div class="product">
+                <div class="product_image">
+                    <img src="../images/products/star_destroyer.jpg" alt="">
+                </div>
+                <div class="product_content">
+                    <div class="product_title text-center">
+                        <h1 class="text-center lego-name">Title</h1>
+                        <h6 class="text-center price">1111 руб</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Product -->
+        <a href="#">
+            <div class="product">
+                <div class="product_image">
+                    <img src="../images/products/star_destroyer.jpg" alt="">
+                </div>
+                <div class="product_content">
+                    <div class="product_title text-center">
+                        <h1 class="text-center lego-name">Title</h1>
+                        <h6 class="text-center price">1111 руб</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+
+    {{>footer}}
+
+<!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+<script src="../css/bootstrap4/popper.js"></script>
+<script src="../css/bootstrap4/bootstrap.min.js"></script>
+<script src="../plugins/greensock/TweenMax.min.js"></script>
+<script src="../plugins/greensock/TimelineMax.min.js"></script>
+<script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../plugins/greensock/animation.gsap.min.js"></script>
+<script src="../plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="../plugins/easing/easing.js"></script>
+<script src="../plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../js/custom.js"></script>
+<script src="../js/slider.js"></script>
+</body>
+</html>

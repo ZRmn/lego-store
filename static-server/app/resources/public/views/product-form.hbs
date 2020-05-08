@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form</title>
+    <script src="../js/admin.js" type="text/javascript" rel="script"></script>
+</head>
+<body>
+    <form name="product">
+        <p>
+            <label for="title">Название</label>
+            <input id="title" name="title" required>
+        </p>
+        <p>
+            <label for="article">Артикул</label>
+            <input id="article" name="article" required>
+        </p>
+        <p>
+            <label for="category">Категория</label>
+            <select id="category" name="category">
+                <option selected value="Marvel Superheroes">Marvel Superheroes</option>
+                <option value="DC Superheroes">DC Superheroes</option>
+                <option value="Star Wars">Star Wars</option>
+                <option value="Technic">Technic</option>
+                <option value="Ideas">Ideas</option>
+            </select>
+        </p>
+        <p>
+            <label for="description">Описание</label>
+            <textarea id="description" name="description" rows="20" cols="50"></textarea>
+        </p>
+        <p>
+            <label for="releaseDate">Дата выхода</label>
+            <input id="releaseDate" type="date" name="releaseDate" required>
+        </p>
+        <p>
+            <label for="pieces">Количество деталей</label>
+            <input id="pieces" type="number" name="pieces" required>
+        </p>
+        <p>
+            <label for="price">Цена</label>
+            <input id="price" type="number" name="price" required>
+        </p>
+        <p>
+            <label for="images">Картинки</label>
+            <input id="images" type="file" name="images" accept="image/*" multiple required>
+        </p>
+        <p>
+            <input type="submit" value="Добавить">
+        </p>
+    </form>
+</body>
+</html>
