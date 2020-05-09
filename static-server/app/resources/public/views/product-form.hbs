@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Product Form</title>
-    <script src="../js/admin.js" type="text/javascript" rel="script"></script>
+    <script src="../js/ajax.js" type="text/javascript" rel="script"></script>
+    <script src="../js/auth.js" type="text/javascript" rel="script"></script>
+    <script src="../js/requests.js" type="text/javascript" rel="script"></script>
 </head>
 <body>
-    <form name="product">
+    <form name="productForm" method="post">
         <p>
             <label for="title">Название</label>
             <input id="title" name="title" required>
@@ -46,7 +48,7 @@
             <input id="images" type="file" name="images" accept="image/*" multiple required>
         </p>
         <p>
-            <input type="submit" value="Добавить">
+            <input type="button" value="Добавить" onclick="addProduct(); return false;">
         </p>
     </form>
 </body>

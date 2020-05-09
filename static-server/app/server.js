@@ -48,4 +48,8 @@ app.get("/test", (request, response) => {
    response.render("test")
 });
 
+app.get("/resource-test", (request, response) => {
+   response.render("resource-test")
+});
+
 app.listen(4815);

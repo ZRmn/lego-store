@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class ProductForm
     private String description;
     private Integer pieces;
     private BigDecimal price;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate releaseDate;
     private List<MultipartFile> images;
 }

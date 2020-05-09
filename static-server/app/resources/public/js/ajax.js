@@ -11,14 +11,13 @@ class Ajax
         {
             let request = new XMLHttpRequest();
             let resultRequestConfig = Object.assign(Ajax.getDefaultRequestConfig(), this.requestConfig);
-            let {method, url, headers, body, async, responseType} = resultRequestConfig;
+            let {method, url, headers, body, params, async, responseType} = resultRequestConfig;
 
             method = method.toUpperCase();
 
-            if ( method === "GET" || method === "HEAD")
+            if (method === "GET" || method === "HEAD")
             {
-                url += "/?" + Ajax.paramsFromObject(body);
-                body = null;
+                url += "/?" + Ajax.paramsFromObject(params);
             }
 
             request.responseType = responseType;
@@ -44,7 +43,7 @@ class Ajax
                 }
             };
 
-            request.send(JSON.stringify(body));
+            request.send(body);
         });
     }
 
@@ -60,6 +59,7 @@ class Ajax
         return {
             headers: {},
             body: {},
+            params: {},
             async: true,
             responseType: "text"
         };

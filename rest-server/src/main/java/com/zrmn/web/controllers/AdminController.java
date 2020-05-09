@@ -7,18 +7,11 @@ import com.zrmn.model.forms.StockItemForm;
 import com.zrmn.model.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,6 +38,9 @@ public class AdminController
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -126,28 +122,26 @@ public class AdminController
         return ResponseEntity.ok(product);
     }
 
-    @PostMapping("/products")
-    public ResponseEntity addProduct(@RequestBody ProductForm productForm)
+    @PostMapping(path = "/products", consumes = "multipart/form-data")
+    public ResponseEntity addProduct(@ModelAttribute ProductForm productForm)
     {
         List<MultipartFile> images = productForm.getImages();
         List<String> imageUrls = images.stream()
                 .filter(multipartFile -> !multipartFile.isEmpty())
                 .map(multipartFile -> {
-                    Path path = Paths.get(uploadPath + "/" + productForm.getCategory() + "/" + productForm.getArticle() + "/" + multipartFile.getOriginalFilename());
-                    try
-                    {
-                        Files.write(path, multipartFile.getBytes());
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    return path.toString();
+                    String path = "/" + productForm.getCategory() + "/"
+                            + productForm.getArticle() + "/"
+                            + multipartFile.getOriginalFilename();
+
+                    fileStorageService.store(uploadPath + path, multipartFile);
+
+                    return path;
                 })
                 .collect(Collectors.toList());
 
         Product product = Product.builder()
                 .title(productForm.getTitle())
+                .article(productForm.getArticle())
                 .category(productForm.getCategory())
                 .description(productForm.getDescription())
                 .pieces(productForm.getPieces())

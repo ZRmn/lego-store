@@ -13,7 +13,7 @@ function getAuthToken()
     return localStorage.getItem("authToken");
 }
 
-function addHeader(headers)
+function addAuthenticationHeader(headers)
 {
     let authToken = getAuthToken();
     if (authToken !== null)
