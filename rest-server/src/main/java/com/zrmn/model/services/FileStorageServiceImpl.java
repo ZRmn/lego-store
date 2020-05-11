@@ -1,6 +1,7 @@
 package com.zrmn.model.services;
 
 import com.zrmn.model.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
 
 @Service
 public class FileStorageServiceImpl implements FileStorageService
 {
+    @Value("${upload.path}")
+    private String uploadPath;
+
     @Override
     public void store(String filePath, MultipartFile file)
     {
-        Path path = Paths.get(filePath);
+        Path path = Paths.get(uploadPath + filePath);
 
         try (InputStream inputStream = file.getInputStream())
         {
@@ -39,9 +44,9 @@ public class FileStorageServiceImpl implements FileStorageService
     }
 
     @Override
-    public File load(String filePath)
+    public File load(String filePath) throws NotFoundException
     {
-        File file = Paths.get(filePath).toFile();
+        File file = Paths.get(uploadPath + filePath).toFile();
 
         if(!file.exists())
         {
@@ -52,7 +57,7 @@ public class FileStorageServiceImpl implements FileStorageService
     }
 
     @Override
-    public Resource loadAsResource(String filePath)
+    public Resource loadAsResource(String filePath) throws NotFoundException
     {
         try
         {
@@ -62,6 +67,38 @@ public class FileStorageServiceImpl implements FileStorageService
         catch (MalformedURLException e)
         {
             throw new NotFoundException("File not found");
+        }
+    }
+
+    @Override
+    public void delete(String filePath) throws NotFoundException
+    {
+        File file = load(filePath);
+        file.delete();
+    }
+
+    private boolean isEmptyDirectory(File file)
+    {
+        return file.isDirectory() && file.list().length == 0;
+    }
+
+    @Override
+    public void deleteEmptyDirectories(String directoryPath)
+    {
+        File file = new File(uploadPath + directoryPath);
+
+        while (!file.getName().endsWith(uploadPath))
+        {
+            if(isEmptyDirectory(file))
+            {
+                file.delete();
+            }
+            else
+            {
+                break;
+            }
+
+            file = file.getParentFile();
         }
     }
 }

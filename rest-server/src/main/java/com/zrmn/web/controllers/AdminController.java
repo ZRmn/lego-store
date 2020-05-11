@@ -6,13 +6,10 @@ import com.zrmn.model.forms.SignUpForm;
 import com.zrmn.model.forms.StockItemForm;
 import com.zrmn.model.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin")
@@ -38,12 +35,6 @@ public class AdminController
 
     @Autowired
     private CartService cartService;
-
-    @Autowired
-    private FileStorageService fileStorageService;
-
-    @Value("${upload.path}")
-    private String uploadPath;
 
     @PostMapping("/sign-up")
     public ResponseEntity signUpAdmin(@RequestBody SignUpForm signUpForm)
@@ -125,53 +116,28 @@ public class AdminController
     @PostMapping(path = "/products", consumes = "multipart/form-data")
     public ResponseEntity addProduct(@ModelAttribute ProductForm productForm)
     {
-        List<MultipartFile> images = productForm.getImages();
-        List<String> imageUrls = images.stream()
-                .filter(multipartFile -> !multipartFile.isEmpty())
-                .map(multipartFile -> {
-                    String path = "/" + productForm.getCategory() + "/"
-                            + productForm.getArticle() + "/"
-                            + multipartFile.getOriginalFilename();
-
-                    fileStorageService.store(uploadPath + path, multipartFile);
-
-                    return path;
-                })
-                .collect(Collectors.toList());
-
-        Product product = Product.builder()
-                .title(productForm.getTitle())
-                .article(productForm.getArticle())
-                .category(productForm.getCategory())
-                .description(productForm.getDescription())
-                .pieces(productForm.getPieces())
-                .price(productForm.getPrice())
-                .releaseDate(productForm.getReleaseDate())
-                .imageUrls(imageUrls)
-                .build();
-
-        productsService.save(product);
+       productsService.saveProductAndImages(productForm);
         return ResponseEntity.ok("Product added");
     }
 
-    @PutMapping("/products")
-    public ResponseEntity updateProduct(@RequestBody Product product)
+    @PutMapping(path = "/products", consumes = "multipart/form-data")
+    public ResponseEntity updateProduct(@RequestBody ProductForm productForm)
     {
-        productsService.update(product);
+        productsService.updateProductAndImages(productForm);
         return ResponseEntity.ok("Product updated");
     }
 
     @DeleteMapping("/products/{id}")
     public ResponseEntity deleteProduct(@PathVariable Long id)
     {
-        productsService.delete(id);
+        productsService.deleteProductAndImages(id);
         return ResponseEntity.ok("Product deleted");
     }
 
     @DeleteMapping("/products")
     public ResponseEntity deleteProducts()
     {
-        productsService.deleteAll();
+        productsService.deleteAllProductsAndImages();
         return ResponseEntity.ok("Products deleted");
     }
 

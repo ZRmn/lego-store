@@ -11,14 +11,7 @@ class Ajax
         {
             let request = new XMLHttpRequest();
             let resultRequestConfig = Object.assign(Ajax.getDefaultRequestConfig(), this.requestConfig);
-            let {method, url, headers, body, params, async, responseType} = resultRequestConfig;
-
-            method = method.toUpperCase();
-
-            if (method === "GET" || method === "HEAD")
-            {
-                url += "/?" + Ajax.paramsFromObject(params);
-            }
+            let {method, url, headers, body, async, responseType} = resultRequestConfig;
 
             request.responseType = responseType;
             request.open(method, url, async);
@@ -47,19 +40,11 @@ class Ajax
         });
     }
 
-    static paramsFromObject(object)
-    {
-        return Object.keys(object)
-            .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(object[key]))
-            .join('&');
-    }
-
     static getDefaultRequestConfig()
     {
         return {
             headers: {},
             body: {},
-            params: {},
             async: true,
             responseType: "text"
         };

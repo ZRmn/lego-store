@@ -17,6 +17,7 @@ import java.util.List;
 @Builder
 public class ProductForm
 {
+    private Long id;
     private String title;
     private String category;
     private String article;

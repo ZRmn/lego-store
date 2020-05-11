@@ -1,3 +1,4 @@
+
 <header class="">
     <div class="header_container">
         <div class="container">
@@ -12,8 +13,8 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
-                                                <form action="#">
-                                                    <input type="text" class="search_input" placeholder="Поиск" required="required">
+                                                <form name="searchForm" method="post" onsubmit="return false;">
+                                                    <input name="query" class="search_input" placeholder="Поиск" required="required" onchange="setUrlParams(getFormData());">
                                                 </form>
                                             </div>
                                         </div>
@@ -22,7 +23,7 @@
                             </div>
 
                             <div class="shopping_cart">
-                                <a href="/cart">
+                                <a id="cart">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;"
@@ -42,7 +43,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="d-flex flex-row align-items-center justify-content-end">
-                                                <a class="log_in_button" href="/sign-in">Войти</a>
+                                                <a id="profile" class="log_in_button"></a>
                                             </div>
                                         </div>
                                     </div>
