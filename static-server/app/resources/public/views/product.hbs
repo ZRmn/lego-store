@@ -62,6 +62,7 @@
 
                 <!-- Product Content -->
                 <div class="col-lg-6">
+                    <input type="hidden" id="productId">
                     <div class="details_content">
                         <div id="title" class="details_name">LEGO 75252 Имперский звёздный разрушитель</div>
                         <div id="price" class="details_price">670</div>
@@ -69,7 +70,7 @@
                         <!-- In Stock -->
                         <div class="in_stock_container">
                             <div class="availability">Наличие:</div>
-                            <span id="availability">На складе</span>
+                            <span id="availability"></span>
                         </div>
 
                         <!-- Product Quantity -->
@@ -83,7 +84,7 @@
                                             class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                 </div>
                             </div>
-                            <div class="button cart_button"><a href="#">Добавить в корзину</a></div>
+                            <div onclick="addToCart()" class="button cart_button"><a>Добавить в корзину</a></div>
                         </div>
                     </div>
                 </div>

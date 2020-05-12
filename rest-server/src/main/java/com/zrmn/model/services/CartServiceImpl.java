@@ -103,24 +103,31 @@ public class CartServiceImpl implements CartService
     @Override
     public CartItem addToCart(Customer customer, Product product, Integer quantity) throws NotFoundException, BadRequestException
     {
-        if(stockService.getAvailability(product) >= quantity)
-        {
-            throw new BadRequestException("Product out of stock");
-        }
-
         Optional<CartItem> cartItemCandidate = customer.getCartItems().stream()
                 .filter(cartItem -> cartItem.getProduct().getId().equals(product.getId()))
                 .findFirst();
 
         CartItem cartItem;
+        int productAvailability = stockService.getAvailability(product);
 
         if(cartItemCandidate.isPresent())
         {
             cartItem = cartItemCandidate.get();
+
+            if(productAvailability < cartItem.getQuantity() + quantity)
+            {
+                throw new BadRequestException("Product out of stock");
+            }
+
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
         }
         else
         {
+            if(productAvailability < quantity)
+            {
+                throw new BadRequestException("Product out of stock");
+            }
+
             cartItem = new CartItem(null, product, quantity);
             customer.getCartItems().add(cartItem);
         }

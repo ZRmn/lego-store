@@ -43,7 +43,6 @@ $(document).ready(function()
 
 	initSearch();
 	initMenu();
-	initImage();
 	initQuantity();
 	initIsotope();
 

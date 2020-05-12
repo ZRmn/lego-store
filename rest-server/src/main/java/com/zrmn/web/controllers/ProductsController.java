@@ -61,32 +61,32 @@ public class ProductsController
             {
                 return product -> product.getCategory().equals(param);
             }
-            case "fromPrice":
+            case "priceFrom":
             {
                 BigDecimal price = new BigDecimal(param);
                 return product -> product.getPrice().compareTo(price) >= 0;
             }
-            case "toPrice":
+            case "priceTo":
             {
                 BigDecimal price = new BigDecimal(param);
                 return product -> product.getPrice().compareTo(price) <= 0;
             }
-            case "fromPieces":
+            case "piecesFrom":
             {
                 Integer pieces = Integer.valueOf(param);
                 return product -> product.getPieces() >= pieces;
             }
-            case "toPieces":
+            case "piecesTo":
             {
                 int pieces = Integer.parseInt(param);
                 return product -> product.getPieces() <= pieces;
             }
-            case "fromYear":
+            case "yearFrom":
             {
                 int year = Integer.parseInt(param);
                 return product -> product.getReleaseDate().getYear() >= year;
             }
-            case "toYear":
+            case "yearTo":
             {
                 int year = Integer.parseInt(param);
                 return product -> product.getReleaseDate().getYear() <= year;
@@ -112,21 +112,21 @@ public class ProductsController
         String sortField = params.get("sortField");
 
         String category = params.get("category");
-        String fromPrice = params.get("fromPrice");
-        String toPrice = params.get("toPrice");
-        String fromPieces = params.get("fromPieces");
-        String toPieces = params.get("toPieces");
-        String fromYear = params.get("fromYear");
-        String toYear = params.get("toYear");
+        String priceFrom = params.get("priceFrom");
+        String priceTo = params.get("priceTo");
+        String piecesFrom = params.get("piecesFrom");
+        String piecesTo = params.get("piecesTo");
+        String yearFrom = params.get("yearFrom");
+        String yearTo = params.get("yearTo");
 
         List<Predicate<Product>> predicates = new ArrayList<>();
         addPredicateIfNotNull(predicates, "category", category);
-        addPredicateIfNotNull(predicates, "fromPrice", fromPrice);
-        addPredicateIfNotNull(predicates, "toPrice", toPrice);
-        addPredicateIfNotNull(predicates, "fromPieces", fromPieces);
-        addPredicateIfNotNull(predicates, "toPieces", toPieces);
-        addPredicateIfNotNull(predicates, "fromYear", fromYear);
-        addPredicateIfNotNull(predicates, "toYear", toYear);
+        addPredicateIfNotNull(predicates, "priceFrom", priceFrom);
+        addPredicateIfNotNull(predicates, "priceTo", priceTo);
+        addPredicateIfNotNull(predicates, "piecesFrom", piecesFrom);
+        addPredicateIfNotNull(predicates, "piecesTo", piecesTo);
+        addPredicateIfNotNull(predicates, "yearFrom", yearFrom);
+        addPredicateIfNotNull(predicates, "yearTo", yearTo);
 
         SearchEngine.Searcher<Product> searcher = productsService.searcher();
 

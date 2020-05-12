@@ -1,4 +1,3 @@
-
 let host = "http://localhost:8080";
 let headersSample = {
     "Accept": "application/json",
@@ -13,26 +12,82 @@ function headers()
     return headers;
 }
 
-function testRequest()
+function adminRequest()
 {
-    let method = document.forms.testForm.method.value;
-    let url = document.forms.testForm.url.value;
-    let params = JSON.parse(document.forms.testForm.requestBody.value);
+    let method = document.forms.adminForm.method.value;
+    let url = document.forms.adminForm.url.value;
+    let params = JSON.parse(document.forms.adminForm.requestBody.value);
 
     let requestConfig = {
         "method": method,
-        "url":  host + url + method === "GET" ? "?" + objectToUrlParams(params) : "",
+        "url": host + url,
         "body": JSON.stringify(params),
         "headers": headers()
     };
     let ajax = new Ajax(requestConfig);
 
+    let responseElement = document.getElementById("response");
+
     ajax.makeRequest()
-        .then(value => {
-            document.getElementById("response").innerText = value;
-        }, reason => {
-            document.getElementById("response").innerText = reason;
+        .then(value =>
+        {
+            responseElement.innerText = value;
+        }, reason =>
+        {
+            responseElement.innerText = reason;
         });
+}
+
+function getAdminProductHtml(product)
+{
+    return `
+            <td> 
+               ${product.id}
+            </td>
+            <td> 
+               ${product.category}
+            </td>
+            <td> 
+               ${product.title}
+            </td>
+            <td> 
+               ${product.article}
+            </td>
+            <td> 
+               ${product.price}
+            </td>
+            <td> 
+               ${product.releaseDate}
+            </td>
+    `
+}
+
+function showAdminProducts(productsAsJson)
+{
+    let products = JSON.parse(productsAsJson);
+    let afterNode = document.getElementById("sampleProduct");
+
+    for (let product of products)
+    {
+        let productNode = document.createElement("tr");
+        let productHtml = getAdminProductHtml(product);
+        afterNode.after(productNode);
+        productNode.innerHTML = productHtml;
+        afterNode = productNode;
+    }
+}
+
+function getAdminProducts()
+{
+    let requestConfig = {
+        "method": "GET",
+        "url": host + "/admin/products",
+        "headers": headers(),
+    };
+    let ajax = new Ajax(requestConfig);
+
+    ajax.makeRequest()
+        .then(showAdminProducts);
 }
 
 function signIn()
@@ -40,22 +95,27 @@ function signIn()
     let login = document.forms.signInForm.elements.login.value;
     let password = document.forms.signInForm.elements.password.value;
 
-    let params = {login, password};
+    let params = {
+        login,
+        password
+    };
 
     let requestConfig = {
         "method": "POST",
-        "url":  host + "/sign-in",
+        "url": host + "/sign-in",
         "body": JSON.stringify(params),
         "headers": headers()
     };
     let ajax = new Ajax(requestConfig);
 
     ajax.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             let json = JSON.parse(value);
             saveAuthToken(json.value);
             window.location.replace("/");
-        }, reason => {
+        }, reason =>
+        {
             alert("Логин или паоль введены неверно");
         });
 }
@@ -67,20 +127,27 @@ function signUp()
     let login = document.forms.signUpForm.elements.email.value;
     let password = document.forms.signUpForm.elements.password.value;
 
-    let params = {fullName, phoneNumber, login, password};
+    let params = {
+        fullName,
+        phoneNumber,
+        login,
+        password
+    };
 
     let requestConfig = {
         "method": "POST",
-        "url":  host + "/sign-up",
+        "url": host + "/sign-up",
         "body": JSON.stringify(params),
         "headers": headers()
     };
     let ajax = new Ajax(requestConfig);
 
     ajax.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             window.location.replace("/sign-in");
-        }, reason => {
+        }, reason =>
+        {
             alert("Логин занят");
         });
 }
@@ -89,16 +156,18 @@ function signOut()
 {
     let requestConfig = {
         "method": "POST",
-        "url":  host + "/sign-out",
+        "url": host + "/sign-out",
         "headers": headers()
     };
     let ajax = new Ajax(requestConfig);
 
     ajax.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             deleteAuthToken();
             window.location.replace("/");
-        }, reason => {
+        }, reason =>
+        {
             alert(reason);
         });
 }
@@ -107,16 +176,18 @@ function setImage(imgId, imageUrl)
 {
     let requestConfig = {
         "method": "GET",
-        "url":  host + "/resources" + imageUrl,
+        "url": host + "/resources" + imageUrl,
         "responseType": "blob"
     };
     let ajax = new Ajax(requestConfig);
 
     ajax.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             let urlCreator = window.URL;
             document.getElementById(imgId).src = urlCreator.createObjectURL(value);
-        }, reason => {
+        }, reason =>
+        {
             alert(reason);
         });
 }
@@ -125,16 +196,18 @@ function getObjectUrl(resourceUrl)
 {
     let requestConfig = {
         "method": "GET",
-        "url":  host + "/resources" + resourceUrl,
+        "url": host + "/resources" + resourceUrl,
         "responseType": "blob",
     };
     let ajax = new Ajax(requestConfig);
 
     return ajax.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             let urlCreator = window.URL;
             return urlCreator.createObjectURL(value);
-        }, reason => {
+        }, reason =>
+        {
             alert(reason);
         });
 }
@@ -164,7 +237,7 @@ function showProducts(productsAsJson)
     let products = JSON.parse(productsAsJson);
     let afterNode = document.getElementById("sampleProduct");
 
-    for(let product of products)
+    for (let product of products)
     {
         let productNode = document.createElement("a");
         let productHtml = getProductHtml(product);
@@ -173,7 +246,20 @@ function showProducts(productsAsJson)
         setImage(`product-${product.id}-image`, product.imageUrl);
         afterNode = productNode;
     }
+}
 
+function clearFilters()
+{
+    let category = document.forms.filtersForm.elements.category.value;
+
+    if (category)
+    {
+        window.location.search = "?category=" + category;
+    }
+    else
+    {
+        window.location.search = "";
+    }
 }
 
 function gerUrlParams()
@@ -186,30 +272,43 @@ function setUrlParams(params)
 {
     let urlParams = objectToUrlParams(params);
 
-    if(urlParams)
+    if (urlParams)
     {
-        window.location.search = "?" + urlParams;
+         window.location =  "/products?" + urlParams;
     }
 }
 
 function getFormData()
 {
-    let query = document.forms.searchForm.elements.query.value;
-    let priceFrom = document.forms.filtersForm.elements.priceFrom.value;
-    let priceTo = document.forms.filtersForm.elements.priceTo.value;
-    let piecesFrom = document.forms.filtersForm.elements.piecesFrom.value;
-    let piecesTo = document.forms.filtersForm.elements.piecesTo.value;
-    let yearFrom = document.forms.filtersForm.elements.yearFrom.value;
-    let yearTo = document.forms.filtersForm.elements.yearTo.value;
-    let orderMode = document.forms.orderForm.elements.order.value;
+    let priceTo;
+    let priceFrom;
+    let piecesFrom;
+    let piecesTo;
+    let yearFrom;
+    let yearTo;
+    let category;
     let order, sortField;
 
-    if(orderMode !== "dont sort")
+    if(document.forms.filtersForm)
     {
-        [order, sortField] = orderMode.split("/");
+        priceFrom = document.forms.filtersForm.elements.priceFrom.value;
+        priceTo = document.forms.filtersForm.elements.priceTo.value;
+        piecesFrom = document.forms.filtersForm.elements.piecesFrom.value;
+        piecesTo = document.forms.filtersForm.elements.piecesTo.value;
+        yearFrom = document.forms.filtersForm.elements.yearFrom.value;
+        yearTo = document.forms.filtersForm.elements.yearTo.value;
+        category = document.forms.filtersForm.elements.category.value;
+        let orderMode = document.forms.orderForm.elements.order.value;
+
+        if (orderMode !== "dont sort")
+        {
+            [order, sortField] = orderMode.split("/");
+        }
     }
 
-    return  {
+    let query = document.forms.searchForm.elements.query.value;
+
+    return {
         "query": query,
         "order": order,
         "sortField": sortField,
@@ -219,6 +318,7 @@ function getFormData()
         "piecesTo": piecesTo,
         "yearFrom": yearFrom,
         "yearTo": yearTo,
+        "category": category
     };
 }
 
@@ -226,17 +326,42 @@ function setFormDataFromUrlParams()
 {
     let params = gerUrlParams();
 
-    if(params)
+    if (params)
     {
-        if(params.query) document.forms.searchForm.elements.query.value = params.query;
-        if(params.priceFrom) document.forms.filtersForm.elements.priceFrom.value = params.priceFrom;
-        if(params.priceTo) document.forms.filtersForm.elements.priceTo.value = params.priceTo;
-        if(params.piecesFrom) document.forms.filtersForm.elements.piecesFrom.value = params.piecesFrom;
-        if(params.piecesTo) document.forms.filtersForm.elements.piecesTo.value = params.piecesTo;
-        if(params.yearFrom) document.forms.filtersForm.elements.yearFrom.value = params.yearFrom;
-        if(params.yearTo) document.forms.filtersForm.elements.yearTo.value = params.yearTo;
+        if (params.query)
+        {
+            document.forms.searchForm.elements.query.value = params.query;
+        }
+        if (params.priceFrom)
+        {
+            document.forms.filtersForm.elements.priceFrom.value = params.priceFrom;
+        }
+        if (params.priceTo)
+        {
+            document.forms.filtersForm.elements.priceTo.value = params.priceTo;
+        }
+        if (params.piecesFrom)
+        {
+            document.forms.filtersForm.elements.piecesFrom.value = params.piecesFrom;
+        }
+        if (params.piecesTo)
+        {
+            document.forms.filtersForm.elements.piecesTo.value = params.piecesTo;
+        }
+        if (params.yearFrom)
+        {
+            document.forms.filtersForm.elements.yearFrom.value = params.yearFrom;
+        }
+        if (params.yearTo)
+        {
+            document.forms.filtersForm.elements.yearTo.value = params.yearTo;
+        }
+        if (params.category)
+        {
+            document.forms.filtersForm.elements.category.value = params.category;
+        }
 
-        if(params.order && params.sortField)
+        if (params.order && params.sortField)
         {
             document.forms.orderForm.elements.order.value = params.order + "/" + params.sortField;
         }
@@ -247,7 +372,7 @@ function getProducts()
 {
     let url = host + "/products";
 
-    if(window.location.search.length > 0)
+    if (window.location.search.length > 0)
     {
         url += "?" + window.location.search.replace("?", "");
     }
@@ -263,18 +388,20 @@ function getProducts()
 
     ajax.makeRequest()
         .then(showProducts,
-                reason => {
-            alert(reason);
-        });
+            reason =>
+            {
+                alert(reason);
+            });
 }
 
 async function showProduct(productAsJson)
 {
     let product = JSON.parse(productAsJson);
 
+    document.getElementById("productId").value = product.product.id;
     document.getElementById("title").innerText = product.product.article + " " + product.product.title;
     document.getElementById("price").innerText = product.product.price + " р";
-    document.getElementById("availability").innerText = product.availability + " шт";
+    document.getElementById("availability").innerText = product.availability;
     document.getElementById("description").innerText = product.product.description;
 
     for (let i = 0; i < product.product.imageUrls.length && i < 4; i++)
@@ -319,7 +446,8 @@ function getProduct(id)
 
     ajax.makeRequest()
         .then(showProduct,
-            reason => {
+            reason =>
+            {
                 alert(reason);
             });
 }
@@ -337,9 +465,9 @@ function addProduct()
     formData.append("price", document.forms.productForm.elements.price.value);
     formData.append("pieces", document.forms.productForm.elements.pieces.value);
 
-    for(let file in files)
+    for (let file in files)
     {
-        if(files.hasOwnProperty(file))
+        if (files.hasOwnProperty(file))
         {
             formData.append("images", files[file]);
         }
@@ -357,9 +485,167 @@ function addProduct()
     let ajaxRequest = new Ajax(requestConfig);
 
     ajaxRequest.makeRequest()
-        .then(value => {
+        .then(value =>
+        {
             alert(value);
-        }, reason => {
+        }, reason =>
+        {
             alert(reason);
+        });
+}
+
+function addToCart()
+{
+    let productId = document.getElementById("productId").value;
+    let availability = document.getElementById("availability").innerText;
+    let quantity = document.getElementById("quantity_input").value;
+
+    if (Number(availability) >= Number(quantity))
+    {
+        let cartItemForm = {
+            "productId": productId,
+            "quantity": quantity
+        };
+
+        let requestConfig = {
+            "method": "POST",
+            "url": host + "/cart",
+            "body": JSON.stringify(cartItemForm),
+            "headers": headers()
+        };
+        let ajaxRequest = new Ajax(requestConfig);
+
+        ajaxRequest.makeRequest()
+            .then(value =>
+            {
+                window.location.replace("/cart");
+            });
+    }
+}
+
+function getCartItemHtml(cartItem)
+{
+    return `
+                    <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                        <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                            <div class="cart_item_image">
+                                <div><img id="cart-item-${cartItem.id}-image"></div>
+                            </div>
+                            <div class="cart_item_name_container">
+                                <div class="cart_item_name"><a href="/products/${cartItem.product.id}">${cartItem.product.article + " " + cartItem.product.title}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart_item_price">${cartItem.product.price} р</div>
+                        <div class="cart_item_quantity">
+                            <div class="product_quantity_container">
+                                <div class="product_quantity clearfix">
+                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="${cartItem.quantity}">
+                                    <div class="quantity_buttons">
+                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
+                                                class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
+                                                class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    `
+}
+
+function getCartItems(onSuccess)
+{
+    let requestConfig = {
+        "method": "GET",
+        "url": host + "/cart",
+        "headers": headers(),
+        "async": false,
+        "responseType": ""
+    };
+    let ajax = new Ajax(requestConfig);
+
+    ajax.makeRequest()
+        .then(onSuccess,
+            reason =>
+            {
+                window.location.replace("/sign-in");
+            });
+}
+
+function showCartItems(cartItemsAsJson)
+{
+    let cartItems = JSON.parse(cartItemsAsJson);
+    let afterNode = document.getElementById("sampleCartItem");
+
+    let totalPrice = 0;
+
+    for (let cartItem of cartItems)
+    {
+        totalPrice += cartItem.product.price * cartItem.quantity;
+        let cartItemNode = document.createElement("div");
+        let cartItemHtml = getCartItemHtml(cartItem);
+        afterNode.after(cartItemNode);
+        cartItemNode.innerHTML = cartItemHtml;
+        setImage(`cart-item-${cartItem.id}-image`, cartItem.product.imageUrls[0]);
+        afterNode = cartItemNode;
+    }
+
+    document.getElementById("totalPrice").innerText = totalPrice + " р";
+}
+
+function clearCart()
+{
+    let requestConfig = {
+        "method": "DELETE",
+        "url": host + "/cart",
+        "headers": headers(),
+    };
+    let ajax = new Ajax(requestConfig);
+
+    ajax.makeRequest()
+        .then(value =>
+        {
+            window.location.replace("/");
+        });
+}
+
+function showOrder(cartItemsAsJson)
+{
+    let cartItems = JSON.parse(cartItemsAsJson);
+    let totalPrice = 0;
+
+    for (let cartItem of cartItems)
+    {
+        totalPrice += cartItem.product.price * cartItem.quantity;
+    }
+
+    document.getElementById("totalPrice").innerText = totalPrice + " р";
+}
+
+function placeOrder()
+{
+    let address = document.getElementById("checkout_address").value;
+    let payment = document.querySelector('input[name="radio_payment"]:checked').value;
+    let delivery = document.querySelector('input[name="radio_delivery"]:checked').value;
+
+    let orderForm = {
+        "address": address,
+        "payment": payment,
+        "delivery": delivery
+    };
+
+    let requestConfig = {
+        "method": "POST",
+        "url": host + "/orders",
+        "body": JSON.stringify(orderForm),
+        "headers": headers()
+    };
+    let ajax = new Ajax(requestConfig);
+
+    ajax.makeRequest()
+        .then(value =>
+        {
+            window.location.replace("/");
         });
 }

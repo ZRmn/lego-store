@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <script src="../js/auth.js" rel="script" type="text/javascript"></script>
+    <script src="../js/ajax.js" rel="script" type="text/javascript"></script>
+    <script src="../js/requests.js" rel="script" type="text/javascript"></script>
+    <script src="../js/url.js" rel="script" type="text/javascript"></script>
     <!-- Font Awesome -->
 </head>
 <body>
@@ -41,35 +44,7 @@
             <div class="row cart_items_row">
                 <div class="col">
 
-                    <!-- Cart Item -->
-                    <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                        <!-- Name -->
-                        <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-                            <div class="cart_item_image">
-                                <div><img src="../images/products/star_destroyer.jpg" alt=""></div>
-                            </div>
-                            <div class="cart_item_name_container">
-                                <div class="cart_item_name"><a href="#">LEGO 75252 Имперский звёздный разрушитель</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Price -->
-                        <div class="cart_item_price">$790.90</div>
-                        <!-- Quantity -->
-                        <div class="cart_item_quantity">
-                            <div class="product_quantity_container">
-                                <div class="product_quantity clearfix">
-                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                                    <div class="quantity_buttons">
-                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
-                                                class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
-                                                class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="sampleCartItem" style="display: none"></div>
 
                 </div>
             </div>
@@ -78,19 +53,12 @@
                     <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
 
                         <div class="cart_buttons_right ml-lg-auto">
-                            <div class="button clear_cart_button"><a href="#">Очистить корзину</a></div>
-                            <div class="button update_cart_button"><a href="#">Обновить</a></div>
+                            <div class="button clear_cart_button"><a onclick="clearCart()">Очистить корзину</a></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row row_extra">
-                <div class="col-lg-4">
-
-                    <!-- Delivery -->
-
-
-                </div>
 
                 <div class="col-lg-6 offset-lg-2">
                     <div class="cart_total">
@@ -99,15 +67,7 @@
                             <ul>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Стоимость</div>
-                                    <div class="cart_total_value ml-auto">$790.90</div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Доставка</div>
-                                    <div class="cart_total_value ml-auto">Бесплатно</div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Общая стоимость</div>
-                                    <div class="cart_total_value ml-auto">$790.90</div>
+                                    <div id="totalPrice" class="cart_total_value ml-auto">790.90</div>
                                 </li>
                             </ul>
                         </div>
@@ -135,5 +95,6 @@
 <script src="../plugins/easing/easing.js"></script>
 <script src="../plugins/parallax-js-master/parallax.min.js"></script>
 <script src="../js/cart.js"></script>
+<script>getCartItems(showCartItems)</script>
 </body>
 </html>

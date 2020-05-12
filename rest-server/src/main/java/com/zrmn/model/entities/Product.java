@@ -29,6 +29,7 @@ public class Product implements SearchEngine.Searchable
     private String title;
     private String category;
     private String article;
+    @Column(length = 2048)
     private String description;
     private Integer pieces;
     private BigDecimal price;

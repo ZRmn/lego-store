@@ -40,16 +40,16 @@ app.get("/sign-up", (request, response) => {
    response.render("sign-up")
 });
 
-app.get("/admin/product-add", (request, response) => {
-   response.render("product-form")
+app.get("/admin/request", (request, response) => {
+   response.render("admin-request")
 });
 
-app.get("/test", (request, response) => {
-   response.render("test")
+app.get("/admin/products", (request, response) => {
+   response.render("admin-products")
 });
 
-app.get("/resource-test", (request, response) => {
-   response.render("resource-test")
+app.get("/admin/add-product", (request, response) => {
+   response.render("admin-add-product")
 });
 
 app.listen(4815);

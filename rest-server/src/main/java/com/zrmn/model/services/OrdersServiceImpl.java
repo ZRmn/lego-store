@@ -125,7 +125,7 @@ public class OrdersServiceImpl implements OrdersService
         customer = customersRepository.findById(customer.getId()).get();
 
         BigDecimal totalPrice = orderItems.stream()
-                .map(orderItem -> orderItem.getProduct().getPrice())
+                .map(orderItem -> orderItem.getProduct().getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity())))
                 .reduce(new BigDecimal(0), BigDecimal::add);
 
         Order order = Order.builder()

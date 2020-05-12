@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+
+    <link href="../css/admin.css" type="text/css" rel="stylesheet">
+
+    <script src="../js/auth.js" type="text/javascript" rel="script"></script>
+    <script src="../js/ajax.js" type="text/javascript" rel="script"></script>
+    <script src="../js/requests.js" type="text/javascript" rel="script"></script>
+</head>
+<body>
+
+<h1>Products</h1>
+
+<table>
+    <tr>
+        <td>
+            ID
+        </td>
+        <td>
+            Category
+        </td>
+        <td>
+            Title
+        </td>
+        <td>
+            Article
+        </td>
+        <td>
+            Price
+        </td>
+        <td>
+            Release date
+        </td>
+    </tr>
+
+    <tr id="sampleProduct" style="display: none">
+    </tr>
+
+</table>
+
+<script>getAdminProducts()</script>
+
+</body>
+</html>

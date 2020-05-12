@@ -66,6 +66,8 @@
             <div class="row">
                 <div class="col-sm-3">
                     <form name="filtersForm" method="post">
+                        <input type="hidden" name="category">
+
                     <h1 class="filtr_title">Цена</h1>
 
                         <div class="slider">
@@ -112,6 +114,7 @@
                         </div>
 
                         <input type="submit" value="Применить фильтры" onclick="setUrlParams(getFormData()); return false">
+                        <input type="button" value="Убрать фильтры" onclick="clearFilters(); return false">
                     </form>
                 </div>
 

@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>Admin Request</title>
     <script src="../js/auth.js" type="text/javascript" rel="script"></script>
     <script src="../js/ajax.js" type="text/javascript" rel="script"></script>
     <script src="../js/requests.js" type="text/javascript" rel="script"></script>
 </head>
 <body>
-<form name="testForm">
+
+<h1>Request</h1>
+
+<form name="adminForm">
     <p>
         <label for="method">Method</label>
         <select id="method" name="method">
@@ -26,13 +29,13 @@
         <label for="request-body">Body</label>
         <textarea id="request-body" name="requestBody" cols="50" rows="25">{}</textarea>
     </p>
-    <button type="submit" onclick="testRequest(); return false;">Send</button>
+    <input type="submit" onclick="adminRequest(); return false;" value="Send">
 </form>
+
 <p>
     <span>Response:</span>
+    <span id="response"></span>
 </p>
-<p id="response">
 
-</p>
 </body>
 </html>

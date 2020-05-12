@@ -13,7 +13,10 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <script src="../js/auth.js" rel="script" type="text/javascript"></script>
+    <script src="../js/ajax.js" rel="script" type="text/javascript"></script>
+    <script src="../js/requests.js" rel="script" type="text/javascript"></script>
+    <script src="../js/url.js" rel="script" type="text/javascript"></script>
 	<!-- Font Awesome -->
 </head>
 <body>
@@ -34,7 +37,7 @@
 					<div class="section_title">Заполните следующие поля для подтверждения Вашего заказа.</div>
 					<div class="section_subtitle">Ваши личные данные</div>
 					<div class="checkout_form_container">
-						<form action="#" id="checkout_form" class="checkout_form">
+						<form method="post" id="checkout_form" class="checkout_form">
                             <div>
 								<!-- Address -->
 								<label for="checkout_address">Адрес*</label>
@@ -55,7 +58,7 @@
 					<div class="order_list_container">
 							<li class="d-flex flex-row align-items-center justify-content-start">
 								<div class="order_list_title">Всего</div>
-								<div class="order_list_value ml-auto">$59.90</div>
+								<div id="totalPrice" class="order_list_value ml-auto">$59.90</div>
 							</li>
 						</ul>
 					</div>
@@ -65,11 +68,11 @@
 						<div class="section_title">Метод оплаты</div>
 						<div class="payment_options">
 							<label class="payment_option clearfix">Оплата картой
-								<input type="radio" name="radio_payment">
+								<input type="radio" name="radio_payment" checked value="CARD">
 								<span class="checkmark"></span>
 							</label>
 							<label class="payment_option clearfix">Оплата наличными
-								<input type="radio" name="radio_payment">
+								<input type="radio" value="CASH" name="radio_payment">
 								<span class="checkmark"></span>
 							</label>
 						</div>
@@ -79,12 +82,12 @@
 						<div class="section_title">Метод доставки</div>
 						<div class="delivery_options">
 							<label class="delivery_option clearfix">Курьер
-								<input type="radio" name="radio_delivery">
+								<input type="radio" name="radio_delivery" value="COURIER">
 								<span class="checkmark"></span>
 								<span class="delivery_price">Бесплатно</span>
 							</label>
 							<label class="delivery_option clearfix">Самовывоз
-								<input type="radio" checked="checked" name="radio_delivery">
+								<input type="radio" name="radio_delivery" checked value="PICKUP">
 								<span class="checkmark"></span>
 								<span class="delivery_price">Бесплатно</span>
 							</label>
@@ -92,7 +95,7 @@
 					</div>
 
 					<!-- Order Text -->
-					<div class="button order_button"><a href="#">Подтвердить заказ</a></div>
+					<div class="button order_button"><a onclick="placeOrder()">Подтвердить заказ</a></div>
 				</div>
 			</div>
 		</div>
@@ -117,5 +120,6 @@
 <script src="../plugins/easing/easing.js"></script>
 <script src="../plugins/parallax-js-master/parallax.min.js"></script>
 <script src="../js/checkout.js"></script>
+<script>getCartItems(showOrder)</script>
 </body>
 </html>
