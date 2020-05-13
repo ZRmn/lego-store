@@ -138,7 +138,7 @@ h6::selection
 }
 .form-control
 {
-	color: #db5246;
+	color: #000000;
 }
 section
 {
@@ -1489,9 +1489,9 @@ section
 
 .lego-name{
 	margin-top:-40px;
-	font-family:Arial Black, sans-serif; /* Гарнитура шрифта */ 
-	font-size: 200%; /* Размер текста */ 
-	font-weight: 900; /* Светлое начертание */
+	font-family:Arial Black, sans-serif; /* Гарнитура шрифта */
+	font-size: 100%; /* Размер текста */
+	font-weight: 700; /* Светлое начертание */
 	color: black;
 }
 

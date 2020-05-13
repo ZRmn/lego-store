@@ -64,3 +64,12 @@
     white-space: nowrap;
     width: 100%;
 }
+
+
+#hiddenErrorMessage{
+    color: red;
+    display: none;
+    font-size: 0.7rem;
+    margin-bottom: -25px;
+    text-align:  center;
+}

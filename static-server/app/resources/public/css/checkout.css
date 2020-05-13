@@ -1249,3 +1249,11 @@ label
 	color:black;
 	font-weight: 700;
 }
+
+#hiddenErrorMessage{
+	color: red;
+	display: none;
+	font-size: 1.6rem;
+	margin-bottom: -25px;
+	text-align: right;
+}

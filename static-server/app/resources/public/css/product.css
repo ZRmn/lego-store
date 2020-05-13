@@ -1464,3 +1464,11 @@ section
 {
 	color: #FFFFFF;
 }
+
+#hiddenErrorMessage{
+	color: red;
+	display: none;
+	font-size: 1.2rem;
+	margin-bottom: -25px;
+	text-align:  left;
+}
