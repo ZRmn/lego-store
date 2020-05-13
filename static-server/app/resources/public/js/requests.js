@@ -116,7 +116,8 @@ function signIn()
             window.location.replace("/");
         }, reason =>
         {
-            alert("Логин или паоль введены неверно");
+            let place = document.getElementById('hiddenErrorMessage');
+            place.style.display="block";
         });
 }
 
@@ -148,7 +149,8 @@ function signUp()
             window.location.replace("/sign-in");
         }, reason =>
         {
-            alert("Логин занят");
+            let place = document.getElementById('hiddenErrorMessage');
+            place.style.display="block";
         });
 }
 
@@ -274,7 +276,7 @@ function setUrlParams(params)
 
     if (urlParams)
     {
-         window.location =  "/products?" + urlParams;
+        window.location =  "/products?" + urlParams;
     }
 }
 
@@ -521,6 +523,11 @@ function addToCart()
                 window.location.replace("/cart");
             });
     }
+    else
+    {
+        let place = document.getElementById('hiddenErrorMessage');
+        place.style.display="block";
+    }
 }
 
 function getCartItemHtml(cartItem)
@@ -647,5 +654,9 @@ function placeOrder()
         .then(value =>
         {
             window.location.replace("/");
+        },reason =>
+        {
+            let place = document.getElementById('hiddenErrorMessage');
+            place.style.display="block";
         });
 }
