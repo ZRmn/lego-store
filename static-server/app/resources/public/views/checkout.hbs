@@ -1,114 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Checkout</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Sublime project">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap4/bootstrap.min.css">
-	<link href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="../css/checkout.css">
-	<link rel="stylesheet" type="text/css" href="../css/checkout_responsive.css">
+    <title>Checkout</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sublime project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap4/bootstrap.min.css">
+    <link href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/checkout.css">
+    <link rel="stylesheet" type="text/css" href="../css/checkout_responsive.css">
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <script src="../js/auth.js" rel="script" type="text/javascript"></script>
     <script src="../js/ajax.js" rel="script" type="text/javascript"></script>
     <script src="../js/requests.js" rel="script" type="text/javascript"></script>
     <script src="../js/url.js" rel="script" type="text/javascript"></script>
-	<!-- Font Awesome -->
+    <!-- Font Awesome -->
 </head>
 <body>
 
-	<div class="super_container">
+<div class="super_container">
 
-        {{>header}}
+    {{>header}}
 
-<!-- Checkout -->
+    <!-- Checkout -->
 
-<div class="checkout">
-	<div class="container">
-		<div class="row">
+    <div class="checkout">
+        <div class="container">
+            <div class="row">
 
-			<!-- Billing Info -->
-			<div class="col-lg-6">
-				<div class="billing checkout_section">
-					<div class="section_title">Заполните следующие поля для подтверждения Вашего заказа.</div>
-					<div class="section_subtitle">Ваши личные данные</div>
-					<div class="checkout_form_container">
-						<form method="post" id="checkout_form" class="checkout_form">
-                            <div>
-								<!-- Address -->
-								<label for="checkout_address">Адрес*</label>
-								<input type="text" id="checkout_address" class="checkout_input" required="required">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+                <!-- Billing Info -->
+                <div class="col-lg-6">
+                    <div class="billing checkout_section">
+                        <div class="section_title">Заполните следующие поля для подтверждения Вашего заказа.</div>
+                        <div class="section_subtitle">Ваши личные данные</div>
+                        <div class="checkout_form_container">
+                            <form method="post" id="checkout_form" class="checkout_form">
+                                <div>
+                                    <!-- Address -->
+                                    <label for="checkout_address">Адрес*</label>
+                                    <input type="text" id="checkout_address" class="checkout_input" required="required">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-			<!-- Order Info -->
+                <!-- Order Info -->
 
-			<div class="col-lg-6">
-				<div class="order checkout_section">
-					<div class="section_title">Ваш заказ</div>
+                <div class="col-lg-6">
+                    <div class="order checkout_section">
+                        <div class="section_title">Ваш заказ</div>
 
-					<!-- Order details -->
-					<div class="order_list_container">
-							<li class="d-flex flex-row align-items-center justify-content-start">
-								<div class="order_list_title">Всего</div>
-								<div id="totalPrice" class="order_list_value ml-auto">$59.90</div>
-							</li>
-						</ul>
-					</div>
+                        <!-- Order details -->
+                        <div class="order_list_container">
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">Всего</div>
+                                <div id="totalPrice" class="order_list_value ml-auto">$59.90</div>
+                            </li>
+                            </ul>
+                        </div>
 
-					<!-- Payment Options -->
-					<div class="payment">
-						<div class="section_title">Метод оплаты</div>
-						<div class="payment_options">
-							<label class="payment_option clearfix">Оплата картой
-								<input type="radio" name="radio_payment" checked value="CARD">
-								<span class="checkmark"></span>
-							</label>
-							<label class="payment_option clearfix">Оплата наличными
-								<input type="radio" value="CASH" name="radio_payment">
-								<span class="checkmark"></span>
-							</label>
-						</div>
-					</div>
+                        <!-- Payment Options -->
+                        <div class="payment">
+                            <div class="section_title">Метод оплаты</div>
+                            <div class="payment_options">
+                                <label class="payment_option clearfix">Оплата картой
+                                    <input type="radio" name="radio_payment" checked value="CARD">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="payment_option clearfix">Оплата наличными
+                                    <input type="radio" value="CASH" name="radio_payment">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
 
-					<div class="delivery">
-						<div class="section_title">Метод доставки</div>
-						<div class="delivery_options">
-							<label class="delivery_option clearfix">Курьер
-								<input type="radio" name="radio_delivery" value="COURIER">
-								<span class="checkmark"></span>
-								<span class="delivery_price">Бесплатно</span>
-							</label>
-							<label class="delivery_option clearfix">Самовывоз
-								<input type="radio" name="radio_delivery" checked value="PICKUP">
-								<span class="checkmark"></span>
-								<span class="delivery_price">Бесплатно</span>
-							</label>
-						</div>
-					</div>
+                        <div class="delivery">
+                            <div class="section_title">Метод доставки</div>
+                            <div class="delivery_options">
+                                <label class="delivery_option clearfix">Курьер
+                                    <input type="radio" name="radio_delivery" value="COURIER">
+                                    <span class="checkmark"></span>
+                                    <span class="delivery_price">Бесплатно</span>
+                                </label>
+                                <label class="delivery_option clearfix">Самовывоз
+                                    <input type="radio" name="radio_delivery" checked value="PICKUP">
+                                    <span class="checkmark"></span>
+                                    <span class="delivery_price">Бесплатно</span>
+                                </label>
+                            </div>
+                        </div>
 
-					<!-- Order Text -->
-					<div class="button order_button"><a onclick="placeOrder()">Подтвердить заказ</a></div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <!-- Order Text -->
+                        <div class="button order_button"><a onclick="placeOrder()">Подтвердить заказ</a></div>
+                    </div>
+                    <p id="hiddenErrorMessage">На скаладе нет нужного количества продукта</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    {{>footer}}
+
 </div>
 
-<!-- Footer -->
-
-        {{>footer}}
-
-</div>
-
-    <script src="../js/header.js"></script>
+<script src="../js/header.js"></script>
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script src="../css/bootstrap4/popper.js"></script>
 <script src="../css/bootstrap4/bootstrap.min.js"></script>

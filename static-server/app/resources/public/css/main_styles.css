@@ -109,11 +109,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -127,18 +127,18 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
-	color: #db5246;
+	color: #000000;
 }
 section
 {
@@ -575,9 +575,9 @@ section
 	font-weight: 400 !important;
 	font-style: italic;
 	color: #767676 !important;
-} 
+}
 .search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	font-style: italic;
@@ -1489,9 +1489,9 @@ section
 
 .lego-name{
 	margin-top:-40px;
-	font-family:Arial Black, sans-serif; /* Гарнитура шрифта */ 
-	font-size: 200%; /* Размер текста */ 
-	font-weight: 900; /* Светлое начертание */
+	font-family:Arial Black, sans-serif; /* Гарнитура шрифта */
+	font-size: 100%; /* Размер текста */
+	font-weight: 700; /* Светлое начертание */
 	color: black;
 }
 
@@ -1507,7 +1507,7 @@ section
 
 .sort_dropdown{
 	padding-bottom:10px;
-	display: block; /* смещает только блоки */ 
+	display: block; /* смещает только блоки */
 	margin-left: auto
 }
 

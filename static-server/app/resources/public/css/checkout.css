@@ -47,8 +47,8 @@ div
 	display: block;
 	position: relative;
 	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 ul
 {
@@ -105,11 +105,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -123,14 +123,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -218,8 +218,8 @@ h6::selection
 }
 .parallax-window
 {
-    min-height: 400px;
-    background: transparent;
+	min-height: 400px;
+	background: transparent;
 }
 .nopadding
 {
@@ -254,28 +254,28 @@ h6::selection
 .button::after
 {
 	content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 150%;
-    height: 100%;
-    background: #1b1b1b;
-    z-index: 0;
-    opacity: 0;
-    -webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
-    transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
-    -webkit-transform-origin: 0% 100%;
-    transform-origin: 0% 100%;
-    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
-    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150%;
+	height: 100%;
+	background: #1b1b1b;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+	transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+	-webkit-transform-origin: 0% 100%;
+	transform-origin: 0% 100%;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+	transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
 }
 .button:hover::after
 {
 	opacity: 1;
-    -webkit-transform: rotate3d(0, 0, 1, 0deg);
-    transform: rotate3d(0, 0, 1, 0deg);
-    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	-webkit-transform: rotate3d(0, 0, 1, 0deg);
+	transform: rotate3d(0, 0, 1, 0deg);
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
 .button_light
 {
@@ -575,9 +575,9 @@ h6::selection
 	font-weight: 400 !important;
 	font-style: italic;
 	color: #767676 !important;
-} 
+}
 .search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	font-style: italic;
@@ -896,7 +896,7 @@ h6::selection
 }
 .billing
 {
-	
+
 }
 .section_title
 {
@@ -938,10 +938,10 @@ h6::selection
 .dropdown_item_select
 {
 	-webkit-appearance:none;
-    -moz-appearance:none;
-    -ms-appearance:none;
-    -o-appearance:none;
-    appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	-o-appearance:none;
+	appearance:none;
 	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 	-webkit-user-select: none;
 	background-image: url(../images/down.png);
@@ -958,7 +958,7 @@ h6::selection
 }
 .dropdown_item_select::-ms-expand
 {
-    display: none;
+	display: none;
 }
 .checkout_address_2
 {
@@ -989,7 +989,7 @@ h6::selection
 	-o-appearance: none;
 	appearance: none;
 	width: 13px;
-    height: 13px;
+	height: 13px;
 	background: #f2f4f8;
 	cursor: pointer;
 	vertical-align: middle;
@@ -1059,12 +1059,12 @@ h6::selection
 	padding-left: 31px;
 	cursor: pointer;
 	-webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 14px;
-    font-weight: 400;
-    color: #1b1b1b;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 14px;
+	font-weight: 400;
+	color: #1b1b1b;
 }
 .payment_option:not(:last-child)
 {
@@ -1170,12 +1170,12 @@ h6::selection
 	padding-left: 36px;
 	cursor: pointer;
 	-webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 14px;
-    font-weight: 400;
-    color: #1b1b1b;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 14px;
+	font-weight: 400;
+	color: #1b1b1b;
 }
 .delivery_option:not(:last-child)
 {
@@ -1248,4 +1248,12 @@ label
 .log_in_button{
 	color:black;
 	font-weight: 700;
+}
+
+#hiddenErrorMessage{
+	color: red;
+	display: none;
+	font-size: 1.6rem;
+	margin-bottom: -25px;
+	text-align: right;
 }

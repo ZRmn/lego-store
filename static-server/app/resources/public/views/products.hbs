@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="../css/main_styles.css">
     <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="../css/products.css">
 
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../css/main_styles.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -68,7 +68,7 @@
                     <form name="filtersForm" method="post">
                         <input type="hidden" name="category">
 
-                    <h1 class="filtr_title">Цена</h1>
+                        <h1 class="filtr_title">Цена</h1>
 
                         <div class="slider">
                             <p>
@@ -84,7 +84,7 @@
                         </div>
 
 
-                    <h1 class="filtr_title">Количество деталей</h1>
+                        <h1 class="filtr_title">Количество деталей</h1>
                         <div class="slider">
                             <p>
                                 <input type="text" id="pieces_amount" readonly
@@ -99,7 +99,7 @@
                         </div>
 
 
-                    <h1 class="filtr_title">Год</h1>
+                        <h1 class="filtr_title">Год</h1>
                         <div class="slider">
                             <p>
                                 <input type="text" id="year_amount" readonly
@@ -113,8 +113,8 @@
                             </div>
                         </div>
 
-                        <input type="submit" value="Применить фильтры" onclick="setUrlParams(getFormData()); return false">
-                        <input type="button" value="Убрать фильтры" onclick="clearFilters(); return false">
+                        <input type="submit" class="filter_button" value="Применить фильтры" onclick="setUrlParams(getFormData()); return false">
+                        <input type="button" class="filter_button" value="Убрать фильтры" onclick="clearFilters(); return false">
                     </form>
                 </div>
 
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="product_content">
                                     <div class="product_title text-center">
-                                        <h1 id="title" class="text-center lego-name">Title</h1>
+                                        <h3 id="title" class="text-center lego-name">Title</h3>
                                         <h6 id="price" class="text-center price">1111 руб</h6>
                                     </div>
                                 </div>
