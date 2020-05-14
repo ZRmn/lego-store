@@ -65,18 +65,23 @@ public class ProductsServiceImpl implements ProductsService
     public void saveProductAndImages(ProductForm productForm)
     {
         List<MultipartFile> images = productForm.getImages();
-        List<String> imageUrls = images.stream()
-                .filter(multipartFile -> !multipartFile.isEmpty())
-                .map(multipartFile -> {
-                    String path = "/" + productForm.getCategory() + "/"
-                            + productForm.getArticle() + "/"
-                            + multipartFile.getOriginalFilename();
+        List<String> imageUrls = null;
 
-                    fileStorageService.store(path, multipartFile);
+        if(images != null)
+        {
+            imageUrls = images.stream()
+                    .filter(multipartFile -> !multipartFile.isEmpty())
+                    .map(multipartFile -> {
+                        String path = "/" + productForm.getCategory() + "/"
+                                + productForm.getArticle() + "/"
+                                + multipartFile.getOriginalFilename();
 
-                    return path;
-                })
-                .collect(Collectors.toList());
+                        fileStorageService.store(path, multipartFile);
+
+                        return path;
+                    })
+                    .collect(Collectors.toList());
+        }
 
         Product product = Product.builder()
                 .title(productForm.getTitle())

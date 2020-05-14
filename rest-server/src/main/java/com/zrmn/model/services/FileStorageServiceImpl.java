@@ -73,8 +73,15 @@ public class FileStorageServiceImpl implements FileStorageService
     @Override
     public void delete(String filePath) throws NotFoundException
     {
-        File file = load(filePath);
-        file.delete();
+        try
+        {
+            File file = load(filePath);
+            file.delete();
+        }
+        catch (NotFoundException e)
+        {
+            //
+        }
     }
 
     private boolean isEmptyDirectory(File file)
