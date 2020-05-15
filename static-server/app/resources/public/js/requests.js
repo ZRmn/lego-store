@@ -245,7 +245,10 @@ function showProducts(productsAsJson)
         let productHtml = getProductHtml(product);
         afterNode.after(productNode);
         productNode.innerHTML = productHtml;
-        setImage(`product-${product.id}-image`, product.imageUrl);
+        if(product.imageUrl)
+        {
+            setImage(`product-${product.id}-image`, product.imageUrl);
+        }
         afterNode = productNode;
     }
 }
@@ -389,11 +392,7 @@ function getProducts()
     let ajax = new Ajax(requestConfig);
 
     ajax.makeRequest()
-        .then(showProducts,
-            reason =>
-            {
-                alert(reason);
-            });
+        .then(showProducts);
 }
 
 async function showProduct(productAsJson)

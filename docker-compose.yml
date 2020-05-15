@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres:11-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/postgresql/data
+    environment:
+         - POSTGRES_PASSWORD=4815162342
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=lego_store
+         - PGDATA=/postgresql/data/pgdata
+    restart: always
+  rest-server:
+    container_name: rest-server
+    build: rest-server/
+    environment:
+      - DB_HOST=postgres
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on: 
+      - postgres
+  static-server:
+    container_name: static-server
+    build: static-server/
+    ports:
+      - 4815:4815
+    restart: always
+    depends_on: 
+      - rest-server
+volumes:
+    postgres_data: {}

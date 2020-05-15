@@ -9,14 +9,9 @@ import com.zrmn.model.forms.OrderForm;
 import com.zrmn.model.repositories.CartItemsRepository;
 import com.zrmn.model.repositories.CustomersRepository;
 import com.zrmn.model.repositories.OrdersRepository;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
